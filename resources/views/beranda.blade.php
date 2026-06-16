@@ -585,38 +585,23 @@
   </div>
 
   <div class="pengumuman-list">
-
+    @foreach($pengumuman as $p)
     <div class="pengumuman-card reveal">
       <div class="p-date">
-        <div class="p-day">15</div>
-        <div class="p-month">Jun</div>
+        <div class="p-day">{{ \Carbon\Carbon::parse($p->tanggal)->format('d') }}</div>
+        <div class="p-month">{{ \Carbon\Carbon::parse($p->tanggal)->format('M') }}</div>
       </div>
       <div class="p-content">
-        <span class="p-badge">Khusus</span>
-        <div class="p-title">Kebaktian Kenaikan Isa Almasih &amp; Pendalaman Alkitab</div>
-        <div class="p-desc">Hadir dalam perayaan iman bersama. Dimulai pukul 08.00 WIB di gedung utama. Mohon hadir tepat waktu.</div>
+        <span class="p-badge">Informasi</span>
+        <div class="p-title">{{ $p->judul }}</div>
+        <div class="p-desc">{{ Str::limit($p->isi, 150) }}</div>
       </div>
     </div>
+    @endforeach
 
-    <div class="pengumuman-card reveal">
-      <div class="p-date">
-        <div class="p-day">22</div>
-        <div class="p-month">Jun</div>
-      </div>
-     
-
-    <div class="pengumuman-card reveal">
-      <div class="p-date">
-        <div class="p-day">29</div>
-        <div class="p-month">Jun</div>
-      </div>
-      <div class="p-content">
-        <span class="p-badge">Pelayanan</span>
-        <div class="p-title">Bakti Sosial dan Pembagian Sembako di Lingkungan Sekitar</div>
-        <div class="p-desc">Pendaftaran relawan dibuka melalui sekretariat. Kegiatan berlangsung mulai pukul 07.30 WIB.</div>
-      </div>
-    </div>
-
+    @if($pengumuman->isEmpty())
+    <p class="section-sub reveal">Belum ada pengumuman terbaru.</p>
+    @endif
   </div>
 </section>
 
