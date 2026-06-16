@@ -15,6 +15,10 @@ use App\Http\Controllers\BerandaController;
 | BERANDA
 |--------------------------------------------------------------------------
 */
+Route::get('/test-health', function () {
+    return 'OK';
+});
+
 Route::get('/', [BerandaController::class, 'index'])->name('home');
 
 /*
